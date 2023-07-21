@@ -1,0 +1,70 @@
+<section style="background-color: #eee; min-height: 100vh;">
+  <div class="container py-5">
+
+    <div class="row">
+
+      <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+
+        <h5 class="font-weight-bold mb-3 text-center text-lg-start">Group Members</h5>
+
+        <div class="card">
+          <div class="card-body">
+
+            <ul class="list-unstyled mb-0">
+              <!-- <li class="p-2 border-bottom" style="background-color: #eee;"> -->
+                <li class="p-2 border-bottom" *ngFor="let users of activeUsersList">
+                <a href="#!" class="d-flex justify-content-between">
+                  <div class="d-flex flex-row">
+                    <img src="/assets/images.jpeg" alt="avatar"
+                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                    <div class="pt-1">
+                      <p class="fw-bold mb-0">{{users.username || "Dummy User"}}</p>
+                      <p class="small text-muted">Active User</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-6 col-lg-7 col-xl-8">
+
+        <ul class="list-unstyled">
+          <li class="d-flex justify-content-between mb-4" *ngFor="let chat of allChats">
+            <img *ngIf="chat.user != userName" src="/assets/images.jpeg" alt="avatar"
+              class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between p-3">
+                <p class="fw-bold mb-0">{{chat.user}}</p>
+                <!-- <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p> -->
+              </div>
+              <div class="card-body">
+                <p class="mb-0">
+                  {{chat.message}}
+                </p>
+              </div>
+            </div>
+            <img *ngIf="chat.user == userName" src="/assets/images.jpeg" alt="avatar"
+              class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+          </li>
+        </ul>
+        <ul style="list-style-type:none;">
+          <li class="bg-white mb-3">
+            <div class="form-outline">
+              <label class="form-label" for="textAreaExample2">Type Message .</label>
+              <textarea class="form-control" id="textAreaExample2" rows="4" [(ngModel)]="message"></textarea>
+            </div>
+          </li>
+          <button type="button" class="btn btn-info btn-rounded float-end" (click)="sendMessage()">Send</button>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
